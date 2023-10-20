@@ -8,4 +8,4 @@ rps:
 	$(CC) $(CFLAGS) -o rps ./rps_pipes.c
 
 clean:
-	rm -f $(PROGS) 
+	rm -f -r $(PROGS) rps.dSYM
