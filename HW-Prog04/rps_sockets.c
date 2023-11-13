@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 
     if (child1_pid == 0) {
         // Child 1
-        _child(1, child1_name, sockets[0]);
+        run_child(1, child1_name, sockets[0]);
     } else {
         // Child 2
         child2_pid = fork();
