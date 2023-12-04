@@ -4,7 +4,7 @@ echo "-----------------COMPILE THE PROGRAM-----------------"
 make clean all
 echo "-----------------RUN THE PROGRAM-----------------"
 echo "-----------------PRINT THE USAGE-----------------"
-# ./scheduler
+ ./scheduler
 echo "-----------------Cretae input.txt-----------------"
 echo "1 0 10
 2 0 9
@@ -17,7 +17,7 @@ echo "-----------------TEST WITH FCFS-----------------"
 ./scheduler FCFS <<< "$(cat input.txt)"
 echo "-----------------TEST WITH RR-----------------"
 ./scheduler RR 2 <<< "$(cat input.txt)"
-# echo "-----------------ERROR: TEST WITH NEGATIVE-----------------"
-# ./scheduler FCFS <<< "-1 2 3"
-# ./scheduler FCFS <<< "1 -2 3"
-# ./scheduler FCFS <<< "1 2 -3"
+ echo "-----------------ERROR: TEST WITH NEGATIVE-----------------"
+ ./scheduler FCFS <<< "-1 2 3"
+ ./scheduler FCFS <<< "1 -2 3"
+ ./scheduler FCFS <<< "1 2 -3"

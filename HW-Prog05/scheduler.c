@@ -173,6 +173,8 @@ int main(int argc, char **argv)
 {
     int quantum;
     queue q = newqueue();
+    int *id_list = NULL; // Array to store entered IDs
+    int id_count = 0;    // Counter for entered IDs
 
     if (argc < 2)
     {
@@ -193,6 +195,22 @@ int main(int argc, char **argv)
         printf("First Come First Served does not require a quantum value.\n");
         exit(1);
     }
+    if (strcmp(argv[1], "FCFS") != 0 && strcmp(argv[1], "fcfs") != 0 && strcmp(argv[1], "RR") != 0 && strcmp(argv[1], "rr") != 0)
+    {
+        printf("Usage: ./scheduler <algorithm> <quantum>\n");
+        printf("Algorithm must be either FCFS or RR.\n");
+        exit(1);
+    }
+    if (strcmp(argv[1], "RR") == 0 || strcmp(argv[1], "rr") == 0)
+    {
+        quantum = atoi(argv[2]);
+        if (quantum <= 0)
+        {
+            printf("Usage: ./scheduler <algorithm> <quantum>\n");
+            printf("Quantum must be a positive integer.\n");
+            exit(1);
+        }
+    }
 
     printf("Enter tasks in the format: <id> <arrival_time> <burst_time>\n");
     printf("Enter 0 for everything when you're done.\n");
@@ -206,6 +224,33 @@ int main(int argc, char **argv)
             break;
         }
         scanf("%d %d", &arrival_time, &burst_time);
+        if (id < 0 || arrival_time < 0 || burst_time < 0)
+        {
+            printf("Id, arrival time and burst time must be positive integers.\n");
+            exit(1);
+        }
+
+        // Check if the entered ID is already in the list
+        for (int i = 0; i < id_count; i++)
+        {
+            if (id == id_list[i])
+            {
+                printf("ID %d is not unique. Please enter a unique ID.\n", id);
+                exit(1);
+            }
+        }
+
+        // Check if the entered ID is in ascending order
+        if (id_count > 0 && id <= id_list[id_count - 1])
+        {
+            printf("IDs must be entered in ascending order. Please enter a higher ID.\n");
+            exit(1);
+        }
+
+        // Add the ID to the list
+        id_list = realloc(id_list, (id_count + 1) * sizeof(int));
+        id_list[id_count] = id;
+        id_count++;
 
         Task *task = malloc(sizeof(Task));
         task->id = id;
@@ -227,6 +272,7 @@ int main(int argc, char **argv)
     }
 
     free(q);
+    free(id_list);
 
     return 0;
 }
