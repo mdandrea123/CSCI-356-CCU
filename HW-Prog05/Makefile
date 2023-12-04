@@ -15,4 +15,4 @@ scheduler: scheduler.o my_queue.o
 	$(CC) $(CFLAGS) -o scheduler scheduler.o my_queue.o $(LFLAGS)
 	
 clean:
-	rm -f *.o *.txt $(PROGS)
+	rm -f *.o input.txt $(PROGS)

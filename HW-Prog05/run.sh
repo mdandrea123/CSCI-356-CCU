@@ -21,3 +21,11 @@ echo "-----------------TEST WITH RR-----------------"
  ./scheduler FCFS <<< "-1 2 3"
  ./scheduler FCFS <<< "1 -2 3"
  ./scheduler FCFS <<< "1 2 -3"
+ echo "-----------------ERROR: TEST WITH NON-UNIQUE ID-----------------"
+ ./scheduler FCFS <<< "1 2 3
+ 1 4 5"
+ echo "-----------------ERROR: TEST WITH NON-ASCENDING ID-----------------"
+ ./scheduler FCFS <<< "2 2 3
+ 1 4 5"
+echo "-----------------ERROR: TEST WITH INCORRECT ALGORITHM-----------------"
+./scheduler ABC
