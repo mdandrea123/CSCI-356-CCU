@@ -5,7 +5,7 @@ make clean all
 echo "-----------------RUN THE PROGRAM-----------------"
 echo "-----------------PRINT THE USAGE-----------------"
  ./scheduler
-echo "-----------------Cretae input.txt-----------------"
+echo "-----------------Create input.txt-----------------"
 echo "1 0 10
 2 0 9
 3 3 5
