@@ -43,7 +43,7 @@ void simulateFCFS(queue q)
             dequeue(q); // Now remove the task from the queue
 
             printf("Task %d starting at time %d...\n", task->id, current_time);
-            // sleep(task->burst_time); // Simulate the task running
+            sleep(1); // Simulate the task running
             printf("Task %d complete at time %d...\n", task->id, current_time + task->burst_time);
 
             int waiting_time = current_time - task->arrival_time;
@@ -155,6 +155,7 @@ void simulateRR(queue q, int quantum)
             // If no task has arrived yet, increment the time
             time++;
         }
+        sleep(1); // Simulate time passing
     }
 
     // Calculate the averages
